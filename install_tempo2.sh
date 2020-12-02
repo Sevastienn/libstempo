@@ -1,36 +1,38 @@
 #!/bin/bash -e
 
-# get install location
-if [ $# -eq 0 ]
-	then
-		echo 'No install location defined, using' $HOME'/.local/tempo2'
-		prefix=$HOME/.local/tempo2
-	else
-		prefix=$1
-		echo 'Will install in' $prefix
-fi
+conda install -c demorest tempo2
 
-# make a destination directory for runtime files
-export TEMPO2=$prefix/share/tempo2
-mkdir -p $TEMPO2
+# # get install location
+# if [ $# -eq 0 ]
+# 	then
+# 		echo 'No install location defined, using' $HOME'/.local/tempo2'
+# 		prefix=$HOME/.local/tempo2
+# 	else
+# 		prefix=$1
+# 		echo 'Will install in' $prefix
+# fi
 
-# git clone https://bitbucket.org/psrsoft/tempo2.git
-# git clone https://jellis11@bitbucket.org/jellis11/tempo2.git
+# # make a destination directory for runtime files
+# export TEMPO2=$prefix/share/tempo2
+# mkdir -p $TEMPO2
 
-curl -O https://bitbucket.org/psrsoft/tempo2/get/master.tar.gz -z master.tar.gz
-# curl -O https://bitbucket.org/jellis11/tempo2/get/master.tar.gz -z master.tar.gz
-tar zxvf master.tar.gz
+# # git clone https://bitbucket.org/psrsoft/tempo2.git
+# # git clone https://jellis11@bitbucket.org/jellis11/tempo2.git
 
-cd psrsoft-tempo2-*
-# cd jellis11-tempo2-*
+# curl -O https://bitbucket.org/psrsoft/tempo2/get/master.tar.gz -z master.tar.gz
+# # curl -O https://bitbucket.org/jellis11/tempo2/get/master.tar.gz -z master.tar.gz
+# tar zxvf master.tar.gz
 
-./bootstrap
-./configure --prefix=$prefix
-# ./configure --prefix=$prefix --with-calceph=/usr/local
-make && make install
-# make plugins-install
-cp -Rp T2runtime/* $TEMPO2/.
-cd ..
+# cd psrsoft-tempo2-*
+# # cd jellis11-tempo2-*
 
-rm -rf psrsoft-tempo2-*
-# rm -rf jellis11-tempo2-*
+# ./bootstrap
+# ./configure --prefix=$prefix
+# # ./configure --prefix=$prefix --with-calceph=/usr/local
+# make && make install
+# # make plugins-install
+# cp -Rp T2runtime/* $TEMPO2/.
+# cd ..
+
+# rm -rf psrsoft-tempo2-*
+# # rm -rf jellis11-tempo2-*
